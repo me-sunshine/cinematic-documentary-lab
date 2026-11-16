@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rashmi Singh: I connect two worlds</title>
+<!--
+  Five-scene animated hiring pitch, 1920x1080, 45 seconds.
+  Open this file in a browser to watch it. render.cjs turns it into the MP4.
+
+  Design system
+    Colour    ink #0F1F1C (ground) · paper #FBFCFB · mint #62D2B0 · muted #9FB5AD
+    Type      Instrument Sans Bold, capitals, for headlines and labels
+              Instrument Serif Italic for the one supporting line per scene
+    Shapes    solid paper circle = business · mint ring = technology · mint line = the connection
+    Layout    120px margins · visual in the upper two thirds · headline bottom left · supporting line bottom right
+    Motion    things fade or rise in once, in reading order; lines draw; nothing loops or bounces
+-->
+<style>
+@font-face{font-family:"Instrument Sans";font-weight:400;src:url(fonts/instrument-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:700;src:url(fonts/instrument-sans-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:italic;src:url(fonts/instrument-serif-latin-400-italic.woff2) format("woff2")}
+:root{--ink:#0F1F1C;--paper:#FBFCFB;--mint:#62D2B0;--muted:#9FB5AD}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--ink);overflow:hidden}
+#stage{position:relative;width:1920px;height:1080px;background:var(--ink);color:var(--paper);font-family:"Instrument Sans",Arial,sans-serif;overflow:hidden;transform-origin:0 0}
+.scene{position:absolute;inset:0;opacity:0;animation:scene calc(var(--len)*1s) linear both;animation-delay:calc(var(--s)*1s)}
+.scene.last{animation-name:scene-last}
+@keyframes scene{0%{opacity:0}5%{opacity:1}94%{opacity:1}100%{opacity:0}}
+@keyframes scene-last{0%{opacity:0}5%{opacity:1}100%{opacity:1}}
+svg{position:absolute;inset:0;width:1920px;height:1080px}
+
+/* fixed furniture */
+.who,.count{position:absolute;top:72px;font-size:22px;font-weight:700;letter-spacing:4px;color:var(--muted)}
+.who{left:120px}.count{right:120px}
+.hl{position:absolute;left:120px;bottom:112px;font-size:100px;font-weight:700;line-height:1;letter-spacing:-2px;text-transform:uppercase}
+.hl .ln{display:block;overflow:hidden;padding-bottom:6px}
+.hl .ln span{display:block}
+.hl em{font-style:normal;color:var(--mint)}
+.side{position:absolute;right:120px;bottom:120px;width:640px;text-align:right}
+.side .say{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:46px;line-height:1.15;color:var(--paper)}
+.side .src{margin-top:16px;font-size:22px;line-height:1.4;color:var(--muted)}
+.contact{position:absolute;left:120px;bottom:52px;font-size:22px;color:var(--muted);letter-spacing:.3px}
+.lab{font-family:"Instrument Sans",Arial,sans-serif;font-weight:700;font-size:22px;letter-spacing:4px;text-anchor:middle}
+
+/* motion: every animated element sets --d, its delay in seconds from the start of its scene */
+.fade,.rise,.draw,.pop,.move,.out,.tidy{animation-delay:calc((var(--s) + var(--d))*1s);animation-fill-mode:both}
+.fade{animation-name:fade;animation-duration:.6s;animation-timing-function:ease}
+.rise{animation-name:rise;animation-duration:.8s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.draw{stroke-dasharray:var(--l);animation-name:draw;animation-duration:calc(var(--dur,.8)*1s);animation-timing-function:ease-in-out}
+.pop{transform-box:fill-box;transform-origin:center;animation-name:pop;animation-duration:.6s;animation-timing-function:cubic-bezier(.2,.9,.3,1)}
+.move{animation-name:move;animation-duration:calc(var(--dur,1.4)*1s);animation-timing-function:cubic-bezier(.6,0,.2,1)}
+.out{animation-name:out;animation-duration:.5s;animation-timing-function:ease}
+.tidy{transform-box:fill-box;transform-origin:center;animation-name:tidy;animation-duration:1s;animation-timing-function:cubic-bezier(.6,0,.2,1)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes draw{from{stroke-dashoffset:var(--l)}to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes move{from{transform:translate(calc(var(--fx,0)*1px),calc(var(--fy,0)*1px))}to{transform:translate(0,0)}}
+@keyframes out{from{opacity:1}to{opacity:0}}
+@keyframes tidy{from{transform:translate(calc(var(--fx,0)*1px),calc(var(--fy,0)*1px)) rotate(calc(var(--fr,0)*1deg))}to{transform:translate(0,0) rotate(0deg)}}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 · THE HOOK -->
+<div class="scene" style="--s:0;--len:7.5">
+  <p class="who">RASHMI SINGH</p><p class="count">01 — 05</p>
+  <svg viewBox="0 0 1920 1080">
+    <g class="move" style="--d:2.2;--fx:-230">
+      <g class="fade" style="--d:.4">
+        <circle cx="640" cy="360" r="200" fill="#FBFCFB"/>
+        <text class="lab" x="640" y="368" fill="#0F1F1C">BUSINESS</text>
+      </g>
+    </g>
+    <g class="move" style="--d:2.2;--fx:230">
+      <g class="fade" style="--d:1">
+        <circle cx="1280" cy="360" r="200" fill="none" stroke="#62D2B0" stroke-width="4"/>
+        <circle cx="1280" cy="360" r="170" fill="none" stroke="#62D2B0" stroke-width="2" stroke-dasharray="2 14" stroke-linecap="round"/>
+        <text class="lab" x="1280" y="368" fill="#62D2B0">TECHNOLOGY</text>
+      </g>
+    </g>
+    <line class="draw" style="--d:3.5;--l:240;--dur:.7" x1="840" y1="360" x2="1080" y2="360" stroke="#62D2B0" stroke-width="4"/>
+    <circle class="pop" style="--d:4.1" cx="960" cy="360" r="18" fill="#62D2B0"/>
+  </svg>
+  <h1 class="hl"><span class="ln"><span class="rise" style="--d:4">I connect</span></span><span class="ln"><span class="rise" style="--d:4.15"><em>two worlds.</em></span></span></h1>
+  <div class="side"><p class="say fade" style="--d:5">Business understanding, meeting emerging technology.</p></div>
+</div>
+
+<!-- 2 · BUSINESS UNDERSTANDING -->
+<div class="scene" style="--s:7.5;--len:8.5">
+  <p class="who">RASHMI SINGH</p><p class="count">02 — 05</p>
+  <svg viewBox="0 0 1920 1080">
+    <g class="out" style="--d:4.3">
+      <g class="move" style="--d:3.4;--fx:-400;--dur:1.1"><g class="fade" style="--d:.9">
+        <circle cx="960" cy="360" r="100" fill="none" stroke="#FBFCFB" stroke-width="3"/>
+        <text class="lab" x="960" y="368" fill="#FBFCFB">PEOPLE</text></g></g>
+      <g class="fade" style="--d:1.6">
+        <circle cx="960" cy="360" r="100" fill="none" stroke="#FBFCFB" stroke-width="3"/>
+        <text class="lab" x="960" y="368" fill="#FBFCFB">PRIORITIES</text></g>
+      <g class="move" style="--d:3.4;--fx:400;--dur:1.1"><g class="fade" style="--d:2.3">
+        <circle cx="960" cy="360" r="100" fill="none" stroke="#FBFCFB" stroke-width="3"/>
+        <text class="lab" x="960" y="368" fill="#FBFCFB">NEEDS</text></g></g>
+    </g>
+    <circle class="pop" style="--d:4.3" cx="960" cy="360" r="200" fill="#FBFCFB"/>
+    <g class="fade" style="--d:4.8">
+      <text x="960" y="366" text-anchor="middle" font-family="Instrument Sans,Arial" font-weight="700" font-size="68" letter-spacing="-1" fill="#0F1F1C">5 CITIES</text>
+      <text x="960" y="416" text-anchor="middle" font-family="Instrument Sans,Arial" font-weight="700" font-size="26" letter-spacing="1" fill="#0F1F1C">~100,000 STUDENTS</text>
+    </g>
+  </svg>
+  <h1 class="hl"><span class="ln"><span class="rise" style="--d:.3">I understand what</span></span><span class="ln"><span class="rise" style="--d:.45"><em>business needs.</em></span></span></h1>
+  <div class="side"><p class="say fade" style="--d:5.4">One programme, owned end to end.</p><p class="src fade" style="--d:5.8">DMart Foundation · 2022–24</p></div>
+</div>
+
+<!-- 3 · EXECUTION -->
+<div class="scene" style="--s:16;--len:8.5">
+  <p class="who">RASHMI SINGH</p><p class="count">03 — 05</p>
+  <svg viewBox="0 0 1920 1080" id="s3">
+    <g id="dots" class="out" style="--d:3.5"></g>
+    <line class="draw" style="--d:3.7;--l:300;--dur:.5" x1="450" y1="360" x2="750" y2="360" stroke="#62D2B0" stroke-width="4"/>
+    <line class="draw" style="--d:4.1;--l:300;--dur:.5" x1="810" y1="360" x2="1110" y2="360" stroke="#62D2B0" stroke-width="4"/>
+    <line class="draw" style="--d:4.5;--l:292;--dur:.5" x1="1170" y1="360" x2="1462" y2="360" stroke="#62D2B0" stroke-width="4"/>
+    <circle class="pop" style="--d:3.3" cx="420" cy="360" r="30" fill="none" stroke="#FBFCFB" stroke-width="4"/>
+    <circle class="pop" style="--d:3.4" cx="780" cy="360" r="30" fill="none" stroke="#FBFCFB" stroke-width="4"/>
+    <circle class="pop" style="--d:3.5" cx="1140" cy="360" r="30" fill="none" stroke="#FBFCFB" stroke-width="4"/>
+    <circle class="pop" style="--d:4.9" cx="1500" cy="360" r="38" fill="#62D2B0"/>
+    <text class="lab fade" style="--d:3.9" x="420" y="446" fill="#FBFCFB">CHALLENGE</text>
+    <text class="lab fade" style="--d:4.3" x="780" y="446" fill="#FBFCFB">STRUCTURE</text>
+    <text class="lab fade" style="--d:4.7" x="1140" y="446" fill="#FBFCFB">PEOPLE</text>
+    <text class="lab fade" style="--d:5.1" x="1500" y="446" fill="#62D2B0">ACTION</text>
+  </svg>
+  <h1 class="hl"><span class="ln"><span class="rise" style="--d:.3">I turn complexity</span></span><span class="ln"><span class="rise" style="--d:.45"><em>into action.</em></span></span></h1>
+  <div class="side"><p class="say fade" style="--d:5.6">200+ educators recruited and trained, every year.</p><p class="src fade" style="--d:6">DMart Foundation · 2022–24</p></div>
+</div>
+
+<!-- 4 · TECHNOLOGY AND AI -->
+<div class="scene" style="--s:24.5;--len:9.5">
+  <p class="who">RASHMI SINGH</p><p class="count">04 — 05</p>
+  <svg viewBox="0 0 1920 1080">
+    <!-- business problem: a request -->
+    <g class="pop" style="--d:.9">
+      <rect x="240" y="280" width="240" height="160" rx="14" fill="#FBFCFB"/>
+      <rect x="270" y="316" width="150" height="12" rx="6" fill="#0F1F1C"/>
+      <rect x="270" y="350" width="180" height="12" rx="6" fill="#0F1F1C" opacity=".35"/>
+      <rect x="270" y="384" width="120" height="12" rx="6" fill="#0F1F1C" opacity=".35"/>
+    </g>
+    <text class="lab fade" style="--d:1.2" x="360" y="545" fill="#FBFCFB">BUSINESS PROBLEM</text>
+    <line class="draw" style="--d:1.8;--l:330;--dur:.8" x1="500" y1="360" x2="830" y2="360" stroke="#62D2B0" stroke-width="4"/>
+    <!-- AI workflow: scattered lines become tidy rows -->
+    <g class="fade" style="--d:2.5">
+      <circle cx="960" cy="360" r="130" fill="none" stroke="#62D2B0" stroke-width="4"/>
+      <circle cx="960" cy="360" r="104" fill="none" stroke="#62D2B0" stroke-width="2" stroke-dasharray="2 14" stroke-linecap="round"/>
+    </g>
+    <g class="fade" style="--d:2.8">
+      <rect class="tidy" style="--d:3.2;--fx:-18;--fy:14;--fr:-28" x="900" y="322" width="120" height="12" rx="6" fill="#62D2B0"/>
+      <rect class="tidy" style="--d:3.3;--fx:22;--fy:-6;--fr:34" x="900" y="354" width="120" height="12" rx="6" fill="#62D2B0"/>
+      <rect class="tidy" style="--d:3.4;--fx:-10;--fy:-16;--fr:-16" x="900" y="386" width="84" height="12" rx="6" fill="#62D2B0"/>
+    </g>
+    <text class="lab fade" style="--d:2.9" x="960" y="545" fill="#62D2B0">AI WORKFLOW</text>
+    <line class="draw" style="--d:4.4;--l:340;--dur:.8" x1="1090" y1="360" x2="1430" y2="360" stroke="#62D2B0" stroke-width="4"/>
+    <!-- human oversight: a person approves -->
+    <circle class="pop" style="--d:5.1" cx="1560" cy="360" r="110" fill="#FBFCFB"/>
+    <path class="draw" style="--d:5.7;--l:150;--dur:.5" d="M1512 362 L1546 396 L1612 326" fill="none" stroke="#0F1F1C" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle class="fade" style="--d:6.1" cx="1560" cy="360" r="130" fill="none" stroke="#62D2B0" stroke-width="4"/>
+    <text class="lab fade" style="--d:5.4" x="1560" y="545" fill="#FBFCFB">HUMAN OVERSIGHT</text>
+  </svg>
+  <h1 class="hl"><span class="ln"><span class="rise" style="--d:.3">I turn curiosity</span></span><span class="ln"><span class="rise" style="--d:.45"><em>into capability.</em></span></span></h1>
+  <div class="side"><p class="say fade" style="--d:6.6">A working prototype, built and tested.</p><p class="src fade" style="--d:7">Intelligent Business Operations Assistant · 2026<br>8 of 8 sample requests completed</p></div>
+</div>
+
+<!-- 5 · THE CLOSE -->
+<div class="scene last" style="--s:34;--len:11">
+  <p class="who">RASHMI SINGH</p><p class="count">05 — 05</p>
+  <svg viewBox="0 0 1920 1080">
+    <g class="move" style="--d:.4;--fx:-120;--dur:1.2"><g class="fade" style="--d:.4">
+      <circle cx="470" cy="330" r="170" fill="#FBFCFB"/>
+      <text class="lab" x="470" y="338" fill="#0F1F1C">BUSINESS</text></g></g>
+    <g class="move" style="--d:.4;--fx:120;--dur:1.2"><g class="fade" style="--d:.4">
+      <circle cx="1450" cy="330" r="170" fill="none" stroke="#62D2B0" stroke-width="4"/>
+      <circle cx="1450" cy="330" r="142" fill="none" stroke="#62D2B0" stroke-width="2" stroke-dasharray="2 14" stroke-linecap="round"/>
+      <text class="lab" x="1450" y="338" fill="#62D2B0">TECHNOLOGY</text></g></g>
+    <line class="draw" style="--d:1.7;--l:640;--dur:1.2" x1="640" y1="330" x2="1280" y2="330" stroke="#62D2B0" stroke-width="4"/>
+    <circle class="pop" style="--d:2.5" cx="800" cy="330" r="18" fill="#62D2B0"/>
+    <circle class="pop" style="--d:2.9" cx="960" cy="330" r="18" fill="#62D2B0"/>
+    <circle class="pop" style="--d:3.3" cx="1120" cy="330" r="18" fill="#62D2B0"/>
+    <text class="lab fade" style="--d:2.6" x="800" y="282" fill="#FBFCFB">NEEDS</text>
+    <text class="lab fade" style="--d:3" x="960" y="282" fill="#FBFCFB">ACTION</text>
+    <text class="lab fade" style="--d:3.4" x="1120" y="282" fill="#FBFCFB">CAPABILITY</text>
+  </svg>
+  <h1 class="hl" style="bottom:128px"><span class="ln"><span class="rise" style="--d:3.9">The bridge</span></span><span class="ln"><span class="rise" style="--d:4.05">between business</span></span><span class="ln"><span class="rise" style="--d:4.2"><em>and technology.</em></span></span></h1>
+  <div class="side" style="width:700px;bottom:136px"><p class="say fade" style="--d:5.2">I connect business needs with the people, processes and technology that move them forward.</p></div>
+  <p class="contact fade" style="--d:6.2">Rashmi Singh · rashmissingh97@gmail.com · linkedin.com/in/-rashmi-singh- · rashmi-singh.rashmissingh97.workers.dev</p>
+</div>
+
+</div>
+<script>
+// Scene 3: sixteen scattered dots that gather into four ordered points. Positions come from a fixed seed, so every render is identical.
+(function () {
+  const g = document.getElementById('dots'), ns = 'http://www.w3.org/2000/svg';
+  const targets = [420, 780, 1140, 1500];
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 16; i++) {
+    const tx = targets[i % 4], sx = 260 + rnd() * 1400, sy = 150 + rnd() * 440;
+    const outer = document.createElementNS(ns, 'g');
+    outer.setAttribute('class', 'move');
+    outer.setAttribute('style', `--d:2;--fx:${Math.round(sx - tx)};--fy:${Math.round(sy - 360)};--dur:1.3`);
+    const c = document.createElementNS(ns, 'circle');
+    c.setAttribute('cx', tx); c.setAttribute('cy', 360); c.setAttribute('r', i % 3 === 0 ? 14 : 9);
+    c.setAttribute('fill', i % 4 === 3 ? '#62D2B0' : '#FBFCFB');
+    c.setAttribute('class', 'fade'); c.setAttribute('style', `--d:${(0.5 + i * 0.07).toFixed(2)}`);
+    outer.appendChild(c); g.appendChild(outer);
+  }
+  // fit the stage to the window when watched in a browser
+  const fit = () => { const k = Math.min(innerWidth / 1920, innerHeight / 1080); document.getElementById('stage').style.transform = `scale(${k})`; };
+  if (!location.hash.includes('raw')) { fit(); addEventListener('resize', fit); }
+})();
+</script>
+</body>
+</html>
