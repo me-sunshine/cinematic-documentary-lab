@@ -1,4 +1,6 @@
 out/frames/
 out/stills/
 out/chk/
+out/render.log
+out/score.wav
 __pycache__/

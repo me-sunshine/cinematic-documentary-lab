@@ -19,7 +19,12 @@ await page.goto('file://' + path.join(here, 'film.html') + '#raw');
 await page.evaluate(() => document.fonts.ready);
 await page.evaluate(() => document.getAnimations().forEach((a) => a.pause()));
 
-const seek = (ms) => page.evaluate((t) => { document.getAnimations().forEach((a) => { a.currentTime = t; }); }, ms);
+// Seek every animation, then wait two animation frames so the compositor has painted the new state.
+const seek = (ms) => page.evaluate((t) => new Promise((done) => {
+  document.getAnimations().forEach((a) => { a.currentTime = t; });
+  document.body.getBoundingClientRect();
+  requestAnimationFrame(() => requestAnimationFrame(done));
+}), ms);
 if (only) {
   for (const t of only) { await seek(t * 1000); await page.screenshot({ path: path.join(out, `t${String(t).replace('.', '_')}.png`) }); }
 } else {
