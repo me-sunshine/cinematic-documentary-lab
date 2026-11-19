@@ -43,3 +43,18 @@ VOICE=/path/to/en_GB-alan-medium.onnx ./animatic/build.sh
 The voice file comes from the [Piper voices collection](https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_GB/alan/medium). The build needs `ffmpeg` and the Liberation fonts, and takes about ten minutes on four cores.
 
 The cut is defined in one place, `animatic/timeline.py`: shot order and lengths, captions, dissolves and narration cues. Change it there and rebuild.
+
+## Other projects in this repository
+
+These live on their own branches and share no files with the documentary above.
+
+| Branch | Project |
+| --- | --- |
+| [`pitch-film`](https://github.com/me-sunshine/cinematic-documentary-lab/tree/pitch-film) | *I connect two worlds*: a five-slide animated hiring pitch for Rashmi Singh, as a 45-second MP4 and an editable PowerPoint, with the source animation and build scripts |
+| [`pitch-deck`](https://github.com/me-sunshine/cinematic-documentary-lab/tree/pitch-deck) | *Why hire Rashmi Singh*: the earlier nine-slide pitch deck, with speaker notes and a source for every figure |
+
+To work on one, switch to its branch:
+
+```bash
+git switch pitch-film
+```
